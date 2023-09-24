@@ -15,7 +15,7 @@ body {
 
 /* Navigation Bar */
 .navbar {
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.7);
     color: white;
     display: flex;
     justify-content: space-between;
@@ -24,19 +24,29 @@ body {
     position: fixed;
     width: 100%;
     z-index: 3;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Add transitions */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.navbar:hover {
-    background-color: #444; /* Change background color on hover */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add box-shadow on hover */
-}
-
-
+/* Add space between the profile picture and the hamburger menu */
 .nav-logo {
     display: flex;
     align-items: center;
+    margin-right: 20px; /* Adjust the margin as needed */
 }
+
+/* Add space between the hamburger menu and the navigation links */
+.nav-toggle {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+    margin-left: 20px; /* Adjust the margin as needed */
+}
+
+.navbar:hover {
+    background-color: rgba(68, 68, 68, 0.7);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 
 .profile-picture {
     border-radius: 50%;
@@ -46,7 +56,7 @@ body {
 }
 
 .nav-toggle {
-    display: none; /* Initially hide the hamburger menu */
+    display: none;
     cursor: pointer;
     padding: 10px;
 }
@@ -65,30 +75,27 @@ body {
     padding: 0;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
 }
 
-
+/* Add margin between individual navigation links */
 .nav-links li {
-    display: inline-block;
-    margin-right: 60px;
+    margin-right: 20px; /* Adjust the margin as needed */
 }
-
 
 /* Navigation Links */
 .nav-links a {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    transition: color 0.3s ease; /* Add transition for smooth color change */
+    font-size: 24px;
+    padding: 20px 0;
+    transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    font-size: x-large;
-    color: #ed0000; /* Change color on hover */
-    
+    color: #ed0000;
 }
-
-
 
 /* CSS for the main content */
 main {
@@ -98,14 +105,14 @@ main {
     justify-content: space-between;
 }
 
-/* CSS for the video container */
-.video-container {
+/* CSS for the image container */
+.image-container {
     flex: 1;
     position: relative;
 }
 
-/* CSS for the video */
-#background-video {
+/* CSS for the image */
+#background-image {
     position: fixed;
     top: 0;
     left: 0;
@@ -124,8 +131,8 @@ main {
     font-size: 15px;
     text-align: right;
     position: absolute;
-    top: 100px; /* Adjust the top position to center the text vertically */
-    transform: translateY(-50%); /* Vertically center the text */
+    top: 100px;
+    transform: translateY(-50%);
     right: 0;
     z-index: 4;
     font-weight: bold;
@@ -157,7 +164,7 @@ main {
 /* Additional styles for the footer */
 .footer {
     text-align: center;
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.7);
     color: white;
     padding: 10px 0;
     position: absolute;
@@ -168,92 +175,106 @@ main {
 
 /* Media query for screens with a maximum width of 768px (e.g., tablets) */
 @media (max-width: 768px) {
-    /* CSS for the video container */
-.video-container {
-    flex: 1;
-    position: relative;
-}
-
-/* CSS for the video */
-#background-video {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 169%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-}
-
-    .social-icons {
-        text-align: center;
-        position: fixed;
-        bottom: 45px;
-        left: 97%;
-        transform: translateX(-50%);
-        z-index: 5;
-    }
-    
-   /* Reduce font size of Typed.js text for smaller screens */
-    .text-container {
-        font-size: 11px;
-    }
     /* Show the hamburger menu icon */
     .nav-toggle {
         display: block;
+        cursor: pointer;
+        padding: 10px;
     }
 
-    /* Hide the regular navigation links */
+    .hamburger {
+        width: 30px;
+        height: 3px;
+        background-color: white;
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+    /* Hamburger icon styles */
+.hamburger {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    margin: 6px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Add transitions */
+}
+
+/* Rotate the first and third lines when the menu is active */
+.nav-toggle.active .hamburger:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.nav-toggle.active .hamburger:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Hide the middle line when the menu is active */
+.nav-toggle.active .hamburger:nth-child(2) {
+    opacity: 0;
+}
+
+
+    /* Hide the navigation links by default */
     .nav-links {
         display: none;
-        position: fixed; /* Change position to fixed to cover the entire website */
+        position: fixed;
         top: 0;
         left: 0;
-        background-color: rgba(0, 0, 0, 0.9); /* Add a semi-transparent background */
         width: 100%;
-        height: 100%; /* Cover the entire viewport */
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
         flex-direction: column;
         text-align: center;
         z-index: 2;
-        padding-top: 60px; /* Add padding to push links below the navbar */
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
     }
 
+    /* Display the navigation links when the .active class is added */
     .nav-links.active {
+        transform: translateY(0);
         display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    /* Rotate hamburger icon when the menu is open */
-    .nav-toggle.active .hamburger:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
+    /* Style for individual navigation links */
+    .nav-links a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        font-size: 24px;
+        padding: 20px 0;
+        transition: color 0.3s ease;
+
     }
 
-    .nav-toggle.active .hamburger:nth-child(2) {
-        opacity: 0;
+    /* Add margin between individual navigation links in responsive devices */
+        .nav-links li {
+            margin-bottom: 25px; /* Adjust the margin as needed */
+        }
+            
+    .nav-links a:hover {
+        color: #ed0000;
     }
 
-    .nav-toggle.active .hamburger:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
-    }
-
-    /* Increase gap between navigation links */
-    .nav-links li {
-        margin-right: 0;
-        margin-bottom: 20px; /* Add vertical spacing between links */
-    }
+    
 }
+
 /* Media query for screens with a maximum width of 480px (e.g., smartphones) */
 @media (max-width: 480px) {
     /* Adjust navigation bar styles for even smaller screens */
     .navbar {
-        padding: 10px 5px; /* Reduce padding further for very small screens */
-    }
-
-    .nav-links li {
-        margin-right: 20px; /* Reduce margin further between navigation links */
+        padding: 10px 5px;
     }
 
     /* Adjust text container styles for very small screens */
     .text-container {
-        font-size: 11px; /* Reduce font size further for very small screens */
+        font-size: 11px;
     }
+
+        /* Add margin between individual navigation links in responsive devices */
+        .nav-links li {
+            margin-bottom: 25px; /* Adjust the margin as needed */
+        }    
 }
+
