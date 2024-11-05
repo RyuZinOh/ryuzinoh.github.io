@@ -34,14 +34,9 @@ nav,
 }
 
 nav {
-  width: 100%;
-  position: fixed;
   justify-content: space-around;
   align-items: center;
-  height: 14vh;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  background-color: white;
-  z-index: 10;
+  height: 17vh;
 }
 
 .nav-links {
@@ -173,7 +168,6 @@ section {
   justify-content: center;
   gap: 5rem;
   height: 80vh;
-  padding-top: 17vh;
 }
 
 #profile img {
@@ -237,7 +231,7 @@ section {
   padding: 1rem;
   width: 8rem;
   border-radius: 2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Added shadow */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
 }
 
 .btn-color-1,
@@ -254,23 +248,24 @@ section {
 .btn-color-2:hover {
   background: rgb(53, 53, 53);
   color: white;
+  border: white;
 }
 
 .btn-color-1:hover {
   background: rgb(0, 0, 0);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); 
 }
 
 .btn-color-2 {
   background: none;
-  color: rgb(53, 53, 53); /* Text color for btn-color-2 */
+  color: rgb(53, 53, 53); 
 }
 
 .btn-color-2:hover {
   border: rgb(255, 255, 255) 0.1rem solid;
-  background: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
-  color: rgb(0, 0, 0); /* Change text color on hover */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  background: rgba(255, 255, 255, 0.1); 
+  color: rgb(0, 0, 0); 
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); 
 }
 
 .btn-container {
@@ -445,35 +440,10 @@ article .icon {
 /* FOOTER SECTION */
 
 footer {
-  text-align: center;
-  padding: 1rem;
+  height: 26vh;
+  margin: 0 1rem;
 }
+
 footer p {
   text-align: center;
-}
-.mixer {
-  width: 390px;
-  max-width: 90%;
-  background-color: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgb(163, 163, 163);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  padding: 1rem;
-  margin: -10px auto 1rem;
-  border-radius: 1rem;
-  opacity: 0.9;
-}
-
-.mixer-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding: 0; /* Remove default padding */
-  margin: 0; /* Remove default margin */
-}
-
-.mixer-links li a {
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
 }

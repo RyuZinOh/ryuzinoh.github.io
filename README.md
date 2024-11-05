@@ -12,3 +12,6 @@ ryuzinoh/
 │
 └── index.html
 ```
+
+
+my main portfolio: https://safallama.com.np 

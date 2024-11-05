@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/mediaqueries.css" />
     <link rel="icon" href="./assets/Icon.png" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css"
+    />
   </head>
   <body>
     <nav id="desktop-nav">
@@ -21,6 +25,7 @@
         </ul>
       </div>
     </nav>
+
     <nav id="hamburger-nav">
       <div class="logo"><img src="./assets/Icon.png" /></div>
       <div class="hamburger-menu">
@@ -37,55 +42,145 @@
         </div>
       </div>
     </nav>
-    <section id="profile">
-      <div class="section__pic-container">
+    <section id="profile" data-aos="fade-up" data-aos-duration="1200">
+      <div
+        class="section__pic-container"
+        data-aos="zoom-in"
+        data-aos-duration="1200"
+      >
         <img src="./assets/profile-pic.png" alt="John Doe profile picture" />
       </div>
-      <div class="section__text">
-        <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">RyuZinOh</h1>
-        <p class="section__text__p2">Safal's Alter Ego</p>
-        <div class="btn-container">
+      <div
+        class="section__text"
+        data-aos="fade-left"
+        data-aos-duration="1200"
+        data-aos-delay="200"
+      >
+        <p
+          class="section__text__p1"
+          data-aos="fade-in"
+          data-aos-duration="1200"
+          data-aos-delay="300"
+        >
+          Hello, I'm
+        </p>
+        <h1
+          class="title"
+          data-aos="fade-in"
+          data-aos-duration="1200"
+          data-aos-delay="400"
+        >
+          RyuZinOh
+        </h1>
+        <p
+          class="section__text__p2"
+          data-aos="fade-right"
+          data-aos-duration="1200"
+          data-aos-delay="500"
+        >
+          Safal's Alter Ego
+        </p>
+        <div
+          class="btn-container"
+          data-aos="slide-up"
+          data-aos-duration="1200"
+          data-aos-delay="600"
+        >
           <button
             class="btn btn-color-2"
-            onclick="window.open('./assets/resume-example.pdf')"
+            onclick="window.location.href='./assets/resume'"
+            data-aos="zoom-in"
+            data-aos-duration="1200"
+            data-aos-delay="700"
           >
             View CV
           </button>
-          <button class="btn btn-color-1" onclick="location.href='./#contact'">
+
+          <button
+            class="btn btn-color-1"
+            onclick="location.href='./#contact'"
+            data-aos="zoom-in"
+            data-aos-duration="1200"
+            data-aos-delay="800"
+          >
             Contact Info
           </button>
         </div>
-        <div id="socials-container">
+        <div
+          id="socials-container"
+          data-aos="fade-up"
+          data-aos-duration="1200"
+          data-aos-delay="900"
+        >
           <img
             src="./assets/linkedin.png"
             alt="My LinkedIn profile"
             class="icon"
             onclick="location.href='https://www.linkedin.com/in/safal-lama-379738330/'"
+            data-aos="flip-left"
+            data-aos-duration="1200"
+            data-aos-delay="1000"
           />
           <img
             src="./assets/github.png"
             alt="My Github profile"
             class="icon"
             onclick="location.href='https://github.com/ryuzinoh'"
+            data-aos="flip-right"
+            data-aos-duration="1200"
+            data-aos-delay="1100"
           />
         </div>
       </div>
     </section>
-    <section id="about">
-      <p class="section__text__p1">Get To Know More</p>
-      <h1 class="title">About Me</h1>
-      <div class="section-container">
-        <div class="section__pic-container">
+
+    <section id="about" data-aos="fade-up" data-aos-duration="1200">
+      <p
+        class="section__text__p1"
+        data-aos="fade-in"
+        data-aos-duration="1200"
+        data-aos-delay="100"
+      >
+        Get To Know More
+      </p>
+      <h1
+        class="title"
+        data-aos="fade-in"
+        data-aos-duration="1200"
+        data-aos-delay="200"
+      >
+        About Me
+      </h1>
+      <div
+        class="section-container"
+        data-aos="fade-up"
+        data-aos-duration="1200"
+        data-aos-delay="300"
+      >
+        <div
+          class="section__pic-container"
+          data-aos="zoom-in"
+          data-aos-duration="1200"
+        >
           <img
             src="./assets/about-pic.png"
             alt="Profile picture"
             class="about-pic"
           />
         </div>
-        <div class="about-details-container">
+        <div
+          class="about-details-container"
+          data-aos="slide-right"
+          data-aos-duration="1200"
+          data-aos-delay="400"
+        >
           <div class="about-containers">
-            <div class="details-container">
+            <div
+              class="details-container"
+              data-aos="fade-in"
+              data-aos-duration="1200"
+              data-aos-delay="500"
+            >
               <img
                 src="./assets/experience.png"
                 alt="Experience icon"
@@ -94,7 +189,12 @@
               <h3>Experience</h3>
               <p>2+ years <br />Linux Expert</p>
             </div>
-            <div class="details-container">
+            <div
+              class="details-container"
+              data-aos="fade-in"
+              data-aos-duration="1200"
+              data-aos-delay="600"
+            >
               <img
                 src="./assets/education.png"
                 alt="Education icon"
@@ -104,7 +204,12 @@
               <p>B.Ca. Bachelors Degree<br />M.Ca. Masters Degree</p>
             </div>
           </div>
-          <div class="text-container">
+          <div
+            class="text-container"
+            data-aos="fade-up"
+            data-aos-duration="1200"
+            data-aos-delay="700"
+          >
             <p>
               "Sinister Specter of icy abyss lurking through the shadow of
               frozen void"
@@ -117,19 +222,50 @@
         alt="Arrow icon"
         class="icon arrow"
         onclick="location.href='./#experience'"
+        data-aos="bounce"
+        data-aos-duration="1200"
+        data-aos-delay="800"
       />
     </section>
 
-    <section id="experience">
-      <p class="section__text__p1">Explore My</p>
-      <h1 class="title">Experience</h1>
-      <div class="experience-details-container">
+    <section id="experience" data-aos="fade-up" data-aos-duration="1200">
+      <p
+        class="section__text__p1"
+        data-aos="fade-in"
+        data-aos-duration="1200"
+        data-aos-delay="100"
+      >
+        Explore My
+      </p>
+      <h1
+        class="title"
+        data-aos="fade-in"
+        data-aos-duration="1200"
+        data-aos-delay="200"
+      >
+        Experience
+      </h1>
+      <div
+        class="experience-details-container"
+        data-aos="zoom-in"
+        data-aos-duration="1200"
+        data-aos-delay="300"
+      >
         <div class="about-containers">
           <!-- Web Development -->
-          <div class="details-container">
+          <div
+            class="details-container"
+            data-aos="fade-left"
+            data-aos-duration="1200"
+            data-aos-delay="400"
+          >
             <h2 class="experience-sub-title">Web Development</h2>
             <div class="article-container">
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="500"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -140,7 +276,11 @@
                   <p>Experienced</p>
                 </div>
               </article>
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="600"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -151,7 +291,11 @@
                   <p>Experienced</p>
                 </div>
               </article>
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="700"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -162,7 +306,11 @@
                   <p>Intermediate</p>
                 </div>
               </article>
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="800"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -173,7 +321,11 @@
                   <p>Intermediate</p>
                 </div>
               </article>
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="900"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -184,7 +336,11 @@
                   <p>Intermediate</p>
                 </div>
               </article>
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="1000"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -195,7 +351,11 @@
                   <p>Intermediate</p>
                 </div>
               </article>
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="1100"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -210,10 +370,19 @@
           </div>
 
           <!-- Backend Development -->
-          <div class="details-container">
+          <div
+            class="details-container"
+            data-aos="fade-right"
+            data-aos-duration="1200"
+            data-aos-delay="400"
+          >
             <h2 class="experience-sub-title">Backend Development</h2>
             <div class="article-container">
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="500"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -224,7 +393,11 @@
                   <p>Intermediate</p>
                 </div>
               </article>
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="600"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -235,7 +408,11 @@
                   <p>Intermediate</p>
                 </div>
               </article>
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="700"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -246,7 +423,11 @@
                   <p>Experienced</p>
                 </div>
               </article>
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="800"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -257,7 +438,11 @@
                   <p>Intermediate</p>
                 </div>
               </article>
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="900"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -268,7 +453,11 @@
                   <p>Intermediate</p>
                 </div>
               </article>
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="1000"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -279,7 +468,11 @@
                   <p>Intermediate</p>
                 </div>
               </article>
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="1100"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -294,10 +487,19 @@
           </div>
 
           <!-- DevOps & Other Technologies -->
-          <div class="details-container">
+          <div
+            class="details-container"
+            data-aos="fade-up"
+            data-aos-duration="1200"
+            data-aos-delay="400"
+          >
             <h2 class="experience-sub-title">DevOps & Tools</h2>
             <div class="article-container">
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="500"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -308,7 +510,11 @@
                   <p>Intermediate</p>
                 </div>
               </article>
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="600"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -319,7 +525,11 @@
                   <p>Intermediate</p>
                 </div>
               </article>
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="700"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -330,7 +540,11 @@
                   <p>Basic</p>
                 </div>
               </article>
-              <article>
+              <article
+                data-aos="slide-up"
+                data-aos-duration="1200"
+                data-aos-delay="800"
+              >
                 <img
                   src="./assets/checkmark.png"
                   alt="Experience icon"
@@ -350,16 +564,43 @@
         alt="Arrow icon"
         class="icon arrow"
         onclick="location.href='./#projects'"
+        data-aos="bounce"
+        data-aos-duration="1200"
+        data-aos-delay="900"
       />
     </section>
 
-    <section id="projects">
-      <p class="section__text__p1">Browse My Recent</p>
-      <h1 class="title">Projects</h1>
-      <div class="experience-details-container">
+    <section id="projects" data-aos="fade-up" data-aos-duration="1200">
+      <p
+        class="section__text__p1"
+        data-aos="fade-in"
+        data-aos-duration="1200"
+        data-aos-delay="100"
+      >
+        Browse My Recent
+      </p>
+      <h1
+        class="title"
+        data-aos="fade-in"
+        data-aos-duration="1200"
+        data-aos-delay="200"
+      >
+        Projects
+      </h1>
+      <div
+        class="experience-details-container"
+        data-aos="zoom-in"
+        data-aos-duration="1200"
+        data-aos-delay="300"
+      >
         <div class="about-containers">
-          <div class="details-container color-container">
-            <div class="article-container">
+          <div
+            class="details-container color-container"
+            data-aos="flip-left"
+            data-aos-duration="1200"
+            data-aos-delay="400"
+          >
+            <div class="article-container" data-tilt>
               <img
                 src="./assets/project-1.png"
                 alt="Project 1"
@@ -382,7 +623,13 @@
               </button>
             </div>
           </div>
-          <div class="details-container color-container">
+
+          <div
+            class="details-container color-container"
+            data-aos="flip-right"
+            data-aos-duration="1200"
+            data-aos-delay="500"
+          >
             <div class="article-container">
               <img
                 src="./assets/project-2.png"
@@ -390,7 +637,7 @@
                 class="project-img"
               />
             </div>
-            <h2 class="experience-sub-title project-title">Noble auction</h2>
+            <h2 class="experience-sub-title project-title">Noble Auction</h2>
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
@@ -406,7 +653,13 @@
               </button>
             </div>
           </div>
-          <div class="details-container color-container">
+
+          <div
+            class="details-container color-container"
+            data-aos="flip-up"
+            data-aos-duration="1200"
+            data-aos-delay="600"
+          >
             <div class="article-container">
               <img
                 src="./assets/project-3.png"
@@ -414,7 +667,7 @@
                 class="project-img"
               />
             </div>
-            <h2 class="experience-sub-title project-title">Weather WEB-APP</h2>
+            <h2 class="experience-sub-title project-title">Weather Web-App</h2>
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
@@ -437,13 +690,40 @@
         alt="Arrow icon"
         class="icon arrow"
         onclick="location.href='./#contact'"
+        data-aos="bounce"
+        data-aos-duration="1200"
+        data-aos-delay="700"
       />
     </section>
-    <section id="contact">
-      <p class="section__text__p1">Get in Touch</p>
-      <h1 class="title">Contact Me</h1>
-      <div class="contact-info-upper-container">
-        <div class="contact-info-container">
+    <section id="contact" data-aos="fade-up" data-aos-duration="1200">
+      <p
+        class="section__text__p1"
+        data-aos="fade-in"
+        data-aos-duration="1200"
+        data-aos-delay="100"
+      >
+        Get in Touch
+      </p>
+      <h1
+        class="title"
+        data-aos="fade-in"
+        data-aos-duration="1200"
+        data-aos-delay="200"
+      >
+        Contact Me
+      </h1>
+      <div
+        class="contact-info-upper-container"
+        data-aos="zoom-in"
+        data-aos-duration="1200"
+        data-aos-delay="300"
+      >
+        <div
+          class="contact-info-container"
+          data-aos="flip-left"
+          data-aos-duration="1200"
+          data-aos-delay="400"
+        >
           <img
             src="./assets/email.png"
             alt="Email icon"
@@ -453,7 +733,12 @@
             <a href="mailto:whysafalisop@gmail.com">whysafalisop@gmail.com</a>
           </p>
         </div>
-        <div class="contact-info-container">
+        <div
+          class="contact-info-container"
+          data-aos="flip-right"
+          data-aos-duration="1200"
+          data-aos-delay="500"
+        >
           <img
             src="./assets/linkedin.png"
             alt="LinkedIn icon"
@@ -466,55 +751,36 @@
           </p>
         </div>
       </div>
+      <img
+        src="./assets/arrow-inversal.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./index'"
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-delay="300"
+        data-aos-easing="ease-in-out"
+        data-aos-once="true"
+      />
     </section>
 
-    <div class="mixer">
-      <ul class="mixer-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-
     <footer>
+      <nav>
+        <div class="nav-links-container">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+          </ul>
+        </div>
+      </nav>
       <p>Copyright &#169; 2023 Sagittarius. All Rights Reserved.</p>
     </footer>
-
     <script src="scripts/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Smooth scrolling function
-        function smoothScroll(target) {
-          const element = document.querySelector(target);
-          if (element) {
-            const headerOffset = 0; // Adjust this if you have a fixed header
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition =
-              elementPosition + window.pageYOffset - headerOffset;
-
-            // Smooth scroll to the element position
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: "smooth",
-            });
-
-            // Update the URL without reloading the page
-            history.pushState(null, "", target);
-          }
-        }
-
-        // Attach event listeners to nav links
-        document
-          .querySelectorAll(".nav-links a, .hamburger-menu .menu-links a")
-          .forEach((link) => {
-            link.addEventListener("click", function (event) {
-              event.preventDefault(); // Prevent default anchor click behavior
-              const targetId = this.getAttribute("href"); // Get the target from href
-              smoothScroll(targetId); // Call the smooth scroll function
-            });
-          });
-      });
+      AOS.init();
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
   </body>
 </html>
