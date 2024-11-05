@@ -34,9 +34,14 @@ nav,
 }
 
 nav {
+  width: 100%;
+  position: fixed;
   justify-content: space-around;
   align-items: center;
-  height: 17vh;
+  height: 14vh;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  z-index: 10;
 }
 
 .nav-links {
@@ -60,6 +65,11 @@ a:hover {
 
 .logo {
   font-size: 2rem;
+}
+
+.logo img {
+  width: 150px;
+  height: auto;
 }
 
 .logo:hover {
@@ -163,6 +173,7 @@ section {
   justify-content: center;
   gap: 5rem;
   height: 80vh;
+  padding-top: 17vh;
 }
 
 #profile img {
@@ -212,7 +223,6 @@ section {
   cursor: pointer;
   height: 2rem;
 }
-
 /* BUTTONS */
 
 .btn-container {
@@ -227,6 +237,7 @@ section {
   padding: 1rem;
   width: 8rem;
   border-radius: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Added shadow */
 }
 
 .btn-color-1,
@@ -247,14 +258,19 @@ section {
 
 .btn-color-1:hover {
   background: rgb(0, 0, 0);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
 }
 
 .btn-color-2 {
   background: none;
+  color: rgb(53, 53, 53); /* Text color for btn-color-2 */
 }
 
 .btn-color-2:hover {
   border: rgb(255, 255, 255) 0.1rem solid;
+  background: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
+  color: rgb(0, 0, 0); /* Change text color on hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
 }
 
 .btn-container {
@@ -272,20 +288,24 @@ section {
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
-
-.about-details-container {
-  justify-content: center;
-  flex-direction: column;
-}
-
-.about-containers,
 .about-details-container {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 85%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-containers {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .about-pic {
   border-radius: 2rem;
-  box-shadow: 0 2px 15px rgb(0,0,0,0.2);
+  box-shadow: 0 2px 15px rgb(0, 0, 0, 0.2);
   border: 1px solid white;
 }
 
@@ -425,10 +445,35 @@ article .icon {
 /* FOOTER SECTION */
 
 footer {
-  height: 26vh;
-  margin: 0 1rem;
+  text-align: center;
+  padding: 1rem;
 }
-
 footer p {
   text-align: center;
+}
+.mixer {
+  width: 390px;
+  max-width: 90%;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgb(163, 163, 163);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  margin: -10px auto 1rem;
+  border-radius: 1rem;
+  opacity: 0.9;
+}
+
+.mixer-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+.mixer-links li a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
 }

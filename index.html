@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RyuZinOh</title>
+    <title>safal lama</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/mediaqueries.css" />
+    <link rel="icon" href="./assets/Icon.png" type="image/png" />
   </head>
   <body>
     <nav id="desktop-nav">
-      <div class="logo">Saggitarius</div>
+      <div class="logo"><img src="./assets/Icon.png" /></div>
       <div>
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
@@ -21,7 +22,7 @@
       </div>
     </nav>
     <nav id="hamburger-nav">
-      <div class="logo">Sagittarius</div>
+      <div class="logo"><img src="./assets/Icon.png" /></div>
       <div class="hamburger-menu">
         <div class="hamburger-icon" onclick="toggleMenu()">
           <span></span>
@@ -49,7 +50,7 @@
             class="btn btn-color-2"
             onclick="window.open('./assets/resume-example.pdf')"
           >
-            Download CV
+            View CV
           </button>
           <button class="btn btn-color-1" onclick="location.href='./#contact'">
             Contact Info
@@ -466,19 +467,54 @@
         </div>
       </div>
     </section>
+
+    <div class="mixer">
+      <ul class="mixer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
     <footer>
-      <nav>
-        <div class="nav-links-container">
-          <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
       <p>Copyright &#169; 2023 Sagittarius. All Rights Reserved.</p>
     </footer>
+
     <script src="scripts/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Smooth scrolling function
+        function smoothScroll(target) {
+          const element = document.querySelector(target);
+          if (element) {
+            const headerOffset = 0; // Adjust this if you have a fixed header
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition =
+              elementPosition + window.pageYOffset - headerOffset;
+
+            // Smooth scroll to the element position
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+
+            // Update the URL without reloading the page
+            history.pushState(null, "", target);
+          }
+        }
+
+        // Attach event listeners to nav links
+        document
+          .querySelectorAll(".nav-links a, .hamburger-menu .menu-links a")
+          .forEach((link) => {
+            link.addEventListener("click", function (event) {
+              event.preventDefault(); // Prevent default anchor click behavior
+              const targetId = this.getAttribute("href"); // Get the target from href
+              smoothScroll(targetId); // Call the smooth scroll function
+            });
+          });
+      });
+    </script>
   </body>
 </html>
