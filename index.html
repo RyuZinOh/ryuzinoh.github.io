@@ -1,10 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Hi Ryu</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safal Lama</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="icon" id="favicon" type="image/svg+xml" href="">
+<style>
+  :root {
+    --background: #11150a;
+    --surface-container: #1c2113;
+    --primary: #c0f93e;
+    --secondary: #b3d273;
+    --tertiary: #8aff97;
+    --on-background: #e1e4d1;
+    --on-surface-variant: #c3c9af;
+    --outline: #8d937b;
+    --outline-variant: #3a4029;
+  }
+
+  [data-theme="light"] {
+    --background: #f8fbe7;
+    --surface-container: #edf0dc;
+    --primary: #4b6700;
+    --secondary: #4d6714;
+    --tertiary: #006e28;
+    --on-background: #191d11;
+    --on-surface-variant: #434935;
+    --outline: #737a63;
+    --outline-variant: #c3c9af;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    background: var(--background);
+    color: var(--on-background);
+    font-family: "Roboto", sans-serif;
+    overflow: hidden;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+
+  main {
+    width: 100%;
+    height: 100vh;
+    padding: 2.5vh 5vw 4vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .theme-toggle {
+    position: absolute;
+    top: 2.5vh;
+    right: 5vw;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border: 1px solid var(--outline-variant);
+    border-radius: 10px;
+    background: var(--surface-container);
+    color: var(--on-surface-variant);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .theme-toggle:hover {
+    color: var(--on-background);
+    border-color: var(--outline);
+  }
+   h1 {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(46px, 8.5vw, 100px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  h1 span {
+    color: var(--primary);
+  }
+
+  .lede {
+    max-width: 680px;
+    margin-top: 1.4vh;
+    font-size: 18px;
+    color: var(--on-surface-variant);
+    line-height: 1.5;
+  }
+
+  ol.list {
+    counter-reset: item;
+    list-style: none;
+    margin-top: 2.2vh;
+    max-width: 720px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2px 24px;
+  }
+  ol.list li {
+    counter-increment: item;
+    display: flex;
+    gap: 14px;
+    padding: 4px 0;
+    font-size: 16px;
+    color: var(--on-background);
+  }
+  ol.list li::before {
+    content: counter(item);
+    color: var(--tertiary);
+    font-weight: 700;
+    font-size: 13px;
+    min-width: 18px;
+    padding-top: 2px;
+  }
+
+  .stat-block {
+    margin-top: 2.6vh;
+    padding-top: 1.6vh;
+    border-top: 1px solid var(--outline-variant);
+    max-width: 300px;
+  }
+  .stat-value {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(36px, 5.5vw, 56px);
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+  }
+  .stat-value.loading {
+    color: var(--outline);
+    font-size: 17px;
+    font-weight: 400;
+  }
+  .stat-value .unit {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    color: var(--on-surface-variant);
+    font-weight: 500;
+    margin-left: 6px;
+  }
+  .stat-caption {
+    font-size: 13px;
+    color: var(--outline);
+    margin-top: 6px;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+  footer .rights {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(26px, 4.5vw, 48px);
+    font-weight: 700;
+    color: var(--on-background);
+    text-align: right;
+    line-height: 1.1;
+  }
+  footer .rights .bang {
+    color: var(--primary);
+  }
+
+  @media (max-width: 640px) {
+    ol.list { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
-  <h1>hi ryu</h1>
+
+<main>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+    <span id="theme-label">Dark</span>
+  </button>
+
+  <h1>Safal<span>Ski</span></h1>
+  <p class="lede">Simple good human being.</p>
+
+  <ol class="list">
+    <li>Is water enthusiast</li>
+    <li>Was rustacean</li>
+    <li>Is C developer</li>
+    <li>Mostly hypocrite</li>
+    <li>Watches anime && reads manga, aint a reader![that shit's just glorified atm]</li>
+    <li>Will Judge your very existence</li>
+    <li>Solves rubik's cube under 2 minutes, under 1 minute if actual magnetic rubik's cube[not coping!]</li>
+    <li>Spins pen, favorite one is thumbaround</li>
+    <li>Knows all base Naruto hand signs</li>
+    <li>Listens to whatever sounds good, no loyalty to genre</li>
+    <li>Hates PascalCase</li>
+    <li>Confidently wrong about powerscaling and general knowledge, same as everyone [Ur bum if you dont agree, realizing is other thing]</li>
+    <li>Occasionally debugs code by staring at it very intensely</li>
+    <li>Goku solos your fav verse</li>
+  </ol>
+
+  <div class="stat-block">
+    <div class="stat-value loading" id="wpm-value">loading</div>
+    <div class="stat-caption">apparently fingers very Fast..</div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <footer>
+    <div class="rights">No copyright.<br>All rights <span class="bang">!</span>reserved.</div>
+  </footer>
+</main>
+
+<script>
+  const wpmEl = document.getElementById('wpm-value');
+
+  fetch('https://api.monkeytype.com/users/safalski/profile')
+    .then(res => res.json())
+    .then(data => {
+      const wpm = data.data.personalBests.time["60"][0].wpm;
+      wpmEl.classList.remove('loading');
+      wpmEl.innerHTML = Math.round(wpm) + '<span class="unit">wpm</span>';
+    })
+    .catch(() => {
+      wpmEl.classList.remove('loading');
+      wpmEl.textContent = '—';
+    });
+
+  const root = document.documentElement;
+  const toggleBtn = document.getElementById('theme-toggle');
+  const themeLabel = document.getElementById('theme-label');
+  const favicon = document.getElementById('favicon');
+
+  function faviconFor(theme) {
+    const bg = theme === 'light' ? '%23f8fbe7' : '%2311150a';
+    const fg = theme === 'light' ? '%234b6700' : '%23c0f93e';
+    return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='${bg}'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-weight='800' font-size='36' fill='${fg}' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E`;
+  }
+
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      root.setAttribute('data-theme', 'light');
+      themeLabel.textContent = 'Light';
+    } else {
+      root.removeAttribute('data-theme');
+      themeLabel.textContent = 'Dark';
+    }
+    favicon.setAttribute('href', faviconFor(theme));
+    localStorage.setItem('theme', theme);
+  }
+
+  const saved = localStorage.getItem('theme') ||
+    (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  applyTheme(saved);
+
+  toggleBtn.addEventListener('click', () => {
+    const isLight = root.getAttribute('data-theme') === 'light';
+    applyTheme(isLight ? 'dark' : 'light');
+  });
+</script>
+
 </body>
 </html>
