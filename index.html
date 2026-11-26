@@ -2,1255 +2,361 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050208">
-<meta name="color-scheme" content="dark">
-<meta name="description" content="Safalski. Simple evil inhuman being.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fbf8fd">
+<meta name="description" content="Safalski. Simple good human being and water enthusiast.">
 <title>Safalski</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=IBM+Plex+Mono:wght@400;700&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23050208'/%3E%3Cpath d='M32 58 L17 10 L57 40 L7 40 L47 10 Z' fill='none' stroke='%23ff1744' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://api.monkeytype.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="icon" id="favicon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3C/svg%3E">
+<script>
+  (function () {
+    var colors = {
+      light: { meta: '#fbf8fd', bg: '#1b1b1f', fg: '#fbf8fd' },
+      dark: { meta: '#131316', bg: '#e4e1e6', fg: '#1b1b1f' }
+    };
+
+    function read() {
+      try { return localStorage.getItem('theme'); } catch (e) { return null; }
+    }
+
+    function apply(mode) {
+      var c = colors[mode];
+      document.documentElement.setAttribute('data-theme', mode);
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', c.meta);
+      var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>" +
+        "<rect width='64' height='64' rx='20' fill='" + c.bg + "'/>" +
+        "<text x='32' y='46' font-size='40' font-weight='700' font-family='Arial,sans-serif' text-anchor='middle' fill='" + c.fg + "'>S</text>" +
+        "</svg>";
+      document.getElementById('favicon').setAttribute('href', 'data:image/svg+xml,' + encodeURIComponent(svg));
+      var btn = document.getElementById('theme-btn');
+      if (btn) {
+        btn.textContent = mode === 'dark' ? 'Light' : 'Dark';
+        btn.setAttribute('aria-label', mode === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+      }
+    }
+
+    var media = window.matchMedia('(prefers-color-scheme: dark)');
+    var saved = read();
+    apply(saved || (media.matches ? 'dark' : 'light'));
+
+    window.__theme = {
+      toggle: function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        apply(next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      },
+      sync: function () { apply(document.documentElement.getAttribute('data-theme')); },
+      follow: function () {
+        media.addEventListener('change', function (e) {
+          if (!read()) apply(e.matches ? 'dark' : 'light');
+        });
+      }
+    };
+  })();
+</script>
 <style>
   :root {
-    --bg: #050208;
-    --ink: #e8ddd0;
-    --blood: #ff1744;
-    --deep: #8a0620;
-    --dried: #3a0612;
-    --hex: #9b3bff;
-    --dim: #8a7a92;
-    --panel: #0b0510;
-    --line: #2a1536;
-
-    --fang-side: polygon(0 0, calc(100% - 16px) 0, calc(100% - 16px) 24%, 100% 35%, calc(100% - 16px) 38%, calc(100% - 16px) 62%, 100% 73%, calc(100% - 16px) 76%, calc(100% - 16px) 100%, 0 100%);
-
-    --fang-bottom: polygon(0 14px, 22% 14px, 29% 0, 36% 14px, 64% 14px, 71% 0, 78% 14px, 100% 14px, 100% 100%, 0 100%);
-
-    --maw: polygon(0 18px, 5.3% 0, 6.25% 18px, 11.55% 8px, 12.5% 18px, 17.8% 0, 18.75% 18px, 24.05% 8px, 25% 18px, 30.3% 0, 31.25% 18px, 36.55% 8px, 37.5% 18px, 42.8% 0, 43.75% 18px, 49.05% 8px, 50% 18px, 55.3% 0, 56.25% 18px, 61.55% 8px, 62.5% 18px, 67.8% 0, 68.75% 18px, 74.05% 8px, 75% 18px, 80.3% 0, 81.25% 18px, 86.55% 8px, 87.5% 18px, 92.8% 0, 93.75% 18px, 99.05% 8px, 100% 18px, 100% calc(100% - 18px), 94.7% 100%, 93.75% calc(100% - 18px), 88.45% calc(100% - 8px), 87.5% calc(100% - 18px), 82.2% 100%, 81.25% calc(100% - 18px), 75.95% calc(100% - 8px), 75% calc(100% - 18px), 69.7% 100%, 68.75% calc(100% - 18px), 63.45% calc(100% - 8px), 62.5% calc(100% - 18px), 57.2% 100%, 56.25% calc(100% - 18px), 50.95% calc(100% - 8px), 50% calc(100% - 18px), 44.7% 100%, 43.75% calc(100% - 18px), 38.45% calc(100% - 8px), 37.5% calc(100% - 18px), 32.2% 100%, 31.25% calc(100% - 18px), 25.95% calc(100% - 8px), 25% calc(100% - 18px), 19.7% 100%, 18.75% calc(100% - 18px), 13.45% calc(100% - 8px), 12.5% calc(100% - 18px), 7.2% 100%, 6.25% calc(100% - 18px), 0.95% calc(100% - 8px), 0 calc(100% - 18px));
-
-    --horned: polygon(0 62px, 6% 22px, 10% 0, 12.5% 34px, 20% 44px, 26% 30px, 32% 46px, 40% 34px, 46% 40px, 50% 6px, 54% 40px, 60% 34px, 68% 46px, 74% 30px, 80% 44px, 87.5% 34px, 90% 0, 94% 22px, 100% 62px, calc(100% - 10px) 72%, 100% 78%, calc(100% - 9px) 90%, 100% calc(100% - 22px), 96% calc(100% - 12px), 92% 100%, 88% calc(100% - 14px), 80% calc(100% - 2px), 72% calc(100% - 16px), 62% 100%, 52% calc(100% - 14px), 42% calc(100% - 2px), 32% calc(100% - 16px), 22% 100%, 12% calc(100% - 14px), 6% calc(100% - 3px), 0 calc(100% - 22px), 9px 88%, 0 76%, 10px 70%);
+    --surface: #fbf8fd;
+    --surface-container: #f0edf1;
+    --surface-container-highest: #e4e1e6;
+    --on-surface: #1b1b1f;
+    --on-surface-variant: #46464f;
+    --outline: #777680;
+    --outline-variant: #c7c5d0;
+    --primary: #1b1b1f;
+    --on-primary: #fbf8fd;
+    --pad: clamp(20px, 4vw, 64px);
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  :root[data-theme="dark"] {
+    --surface: #131316;
+    --surface-container: #1f1f23;
+    --surface-container-highest: #35343a;
+    --on-surface: #e4e1e6;
+    --on-surface-variant: #c7c5d0;
+    --outline: #918f9a;
+    --outline-variant: #46464f;
+    --primary: #e4e1e6;
+    --on-primary: #1b1b1f;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   html {
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    overflow-x: hidden;
-    max-width: 100%;
+    background: var(--surface);
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
-  html::-webkit-scrollbar { display: none; }
-  ::selection { background: var(--blood); color: #050208; }
-  :focus-visible { outline: 2px solid var(--hex); outline-offset: 3px; }
-
-  .is-off, .is-off *, .is-off *::before, .is-off *::after { animation-play-state: paused !important; }
 
   body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 17px;
-    line-height: 1.5;
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100%;
-    padding-left: 80px;
+    min-height: 100vh;
+    background: var(--surface);
+    color: var(--on-surface);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M2 2 L24 12 L15 16 L11 25 Z' fill='%23ff1744' stroke='%23050208' stroke-width='1.5'/%3E%3C/svg%3E") 2 2, crosshair;
-  }
-
-  .world {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-    contain: strict;
-    background:
-      radial-gradient(ellipse 60% 55% at 50% 44%, rgba(255, 23, 68, 0.26), transparent 70%),
-      radial-gradient(ellipse 90% 35% at 50% 115%, rgba(155, 59, 255, 0.25), transparent 70%),
-      var(--bg);
-  }
-  .sigil-wrap {
-    position: absolute;
-    left: 50%;
-    top: 46%;
-    width: min(135vmin, 1250px);
-    height: min(135vmin, 1250px);
-    margin-left: calc(min(135vmin, 1250px) / -2);
-    margin-top: calc(min(135vmin, 1250px) / -2);
-    will-change: transform;
-  }
-  .sigil {
-    display: block;
-    width: 100%;
-    height: 100%;
-    color: var(--blood);
-    opacity: 0.55;
-    overflow: visible;
-  }
-  .sigil .spin-a { transform-origin: 200px 200px; animation: spin 140s linear infinite; }
-  .sigil .spin-b { transform-origin: 200px 200px; animation: spin 70s linear infinite reverse; }
-  .sigil .spin-c { transform-origin: 200px 200px; animation: spin 110s linear infinite reverse; }
-  .sigil .tri { transform-origin: 200px 200px; animation: spin 18s linear infinite; }
-  .sigil .pulse { animation: throb 4s ease-in-out infinite alternate; }
-  .sigil text { fill: currentColor; stroke: none; font-family: "IBM Plex Mono", monospace; font-size: 13px; font-weight: 700; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  @keyframes throb { from { opacity: 0.5; } to { opacity: 1; } }
-
-  .flash { position: absolute; inset: 0; background: var(--blood); opacity: 0; transition: opacity 0.06s linear; }
-
-  .veil {
-    position: fixed;
-    inset: 0;
-    z-index: 60;
-    pointer-events: none;
-    contain: strict;
-    background:
-      repeating-linear-gradient(0deg, rgba(255, 190, 220, 0.03) 0 1px, transparent 1px 4px),
-      radial-gradient(ellipse at center, transparent 44%, rgba(0, 0, 0, 0.75) 100%);
-  }
-  .veil::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, transparent 52%, rgba(255, 23, 68, 0.34) 100%);
-    animation: breathe 5s ease-in-out infinite alternate;
-  }
-  @keyframes breathe { from { opacity: 0.35; } to { opacity: 1; } }
-
-  .side {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 80px;
-    z-index: 70;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    background: var(--blood);
-    clip-path: var(--fang-side);
-  }
-  .side::before {
-    content: "";
-    position: absolute;
-    inset: 0 4px 0 0;
-    background: #030106;
-    clip-path: var(--fang-side);
-    z-index: 0;
-  }
-  .side > * { position: relative; z-index: 1; }
-  .side .mark {
-    flex: none;
-    height: 68px;
-    padding-right: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 1px solid var(--line);
-    color: var(--blood);
-  }
-  .side .mark svg { width: 38px; animation: spin 20s linear infinite reverse; }
-  .side a, .side button {
-    flex: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 16px 24px 0;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-family: "Metal Mania", cursive;
-    font-size: 22px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    text-decoration: none;
-    white-space: nowrap;
-    color: var(--ink);
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid var(--line);
-    cursor: pointer;
-    transition: background 0.12s ease, color 0.12s ease;
-  }
-  .side a:focus-visible, .side button:focus-visible { outline-color: var(--ink); outline-offset: -4px; }
-  .side a.active { background: var(--blood); color: #050208; }
-  .side button.light { margin-top: auto; border-top: 3px solid var(--blood); border-bottom: 0; color: var(--blood); }
-
-  main {
-    position: relative;
-    z-index: 5;
-    width: 100%;
-    max-width: 100%;
     overflow-x: hidden;
-    overflow-x: clip;
   }
+
+  ::selection { background: var(--primary); color: var(--on-primary); }
+  :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+  ul { list-style: none; }
+
+  .toggle {
+    position: fixed;
+    right: max(20px, env(safe-area-inset-right));
+    bottom: max(20px, env(safe-area-inset-bottom));
+    z-index: 10;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--on-primary);
+    background: var(--primary);
+    border: 0;
+    border-radius: 999px;
+    padding: 14px 24px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  }
+  .toggle:hover { opacity: 0.88; }
+  .toggle:active { opacity: 0.76; }
 
   .hero {
-    min-height: 100vh;
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding-top: 6vh;
-    position: relative;
+    padding: clamp(40px, 9vw, 120px) var(--pad) clamp(40px, 7vw, 96px);
+    border-bottom: 1px solid var(--outline-variant);
   }
-
-  .name {
-    display: flex;
-    flex-wrap: nowrap;
-    font-family: "UnifrakturCook", serif;
-    font-weight: 700;
-    font-size: clamp(60px, 19.5vw, 360px);
-    line-height: 0.95;
-    padding: 0 0 0 10px;
-    margin-top: 2vh;
-    position: relative;
+  .hero h1 {
+    margin-left: -0.05em;
+    font-size: min(27vw, 460px);
+    font-weight: 600;
+    line-height: 0.88;
+    letter-spacing: -0.06em;
     white-space: nowrap;
   }
-  .name span {
-    display: inline-block;
-    color: var(--ink);
-    text-shadow: 0 0 34px var(--blood), 6px 6px 0 var(--hex), 0 8px 0 var(--deep);
-    transition: transform 0.15s ease, color 0.15s ease;
-  }
-
-  .lede { padding: 22px 18px 0; max-width: 900px; }
-  .lede .big {
-    display: block;
-    font-family: "Metal Mania", cursive;
-    font-size: clamp(26px, 4.6vw, 56px);
-    line-height: 1.1;
-    letter-spacing: 2px;
-    color: var(--blood);
-    min-height: 1.2em;
-    text-shadow: 0 0 20px rgba(255, 23, 68, 0.6);
-  }
-  .lede .cur {
-    display: inline-block;
-    width: 12px;
-    height: 0.8em;
-    background: var(--blood);
-    margin-left: 6px;
-    vertical-align: -2px;
-    animation: blink 0.9s steps(2, start) infinite;
-  }
-  @keyframes blink { to { visibility: hidden; } }
-  .lede .sub {
-    display: block;
-    margin-top: 8px;
-    min-height: 3.2em;
-    font-size: 17px;
-    color: var(--dim);
-    transition: opacity 0.35s ease;
-  }
-  .lede .sub.off { opacity: 0; }
-
-  .seal {
-    position: relative;
-    margin: 8px 18px 0;
-    display: flex;
-    align-items: center;
-    gap: 22px;
-    padding: 10px 26px 10px 14px;
-    background:
-      radial-gradient(ellipse 50% 140% at 8% 50%, rgba(255, 23, 68, 0.2), transparent 70%),
-      var(--panel);
-    border: 2px solid var(--blood);
-    box-shadow: 0 0 30px rgba(255, 23, 68, 0.4), inset 0 0 34px rgba(255, 23, 68, 0.16);
-  }
-  .vessel { position: relative; width: 132px; flex: none; }
-  .vessel svg { display: block; width: 100%; height: auto; overflow: visible; }
-  .v-ring { fill: none; stroke: var(--hex); stroke-width: 3; stroke-dasharray: 4 10; transform-origin: 200px 200px; animation: spin 40s linear infinite; }
-  .v-back { fill: #12040a; stroke: none; }
-  .v-lvl { transition: transform 0.45s cubic-bezier(0.3, 0.9, 0.3, 1); transform: translateY(372px); }
-  .v-lvl.snap { transition: transform 0.12s ease-in; }
-  .v-wave { animation: slosh 2.4s linear infinite; }
-  .v-wave.b { animation-duration: 3.6s; animation-direction: reverse; opacity: 0.55; }
-  @keyframes slosh { from { transform: translateX(0); } to { transform: translateX(200px); } }
-  .v-edge { fill: none; stroke: var(--blood); stroke-width: 9; stroke-linejoin: round; }
-  .seal .num {
-    flex: none;
-    min-width: 3.1ch;
-    font-family: "UnifrakturCook", serif;
-    font-weight: 700;
-    font-size: clamp(64px, 9vw, 130px);
-    line-height: 1;
-    color: var(--ink);
-    font-variant-numeric: tabular-nums;
-    text-shadow: 4px 4px 0 var(--blood), 0 0 30px rgba(255, 23, 68, 0.7);
-  }
-  .seal .num.slam { animation: slam 0.45s 1; }
-  @keyframes slam {
-    0% { transform: translate(0, 0) scale(1.18); color: var(--blood); }
-    25% { transform: translate(-9px, 4px); }
-    50% { transform: translate(8px, -4px); }
-    75% { transform: translate(-4px, 2px); }
-    100% { transform: translate(0, 0) scale(1); }
-  }
-  .s-info { display: flex; flex-direction: column; min-width: 0; }
-  .s-lab {
-    font-family: "Metal Mania", cursive;
+  .hero .tagline {
+    max-width: 24ch;
+    margin-top: clamp(24px, 4vw, 48px);
     font-size: clamp(22px, 3vw, 40px);
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--blood);
-    text-shadow: 0 0 16px rgba(255, 23, 68, 0.7);
-    line-height: 1.05;
-  }
-  #seal-status {
-    margin-top: 4px;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--hex);
-    transition: opacity 0.2s ease;
-  }
-  #seal-status.off { opacity: 0; }
-
-  .badges { display: flex; gap: 10px; margin: 26px 18px 26px; }
-  .badge {
-    padding: 4px 22px;
-    font-family: "Metal Mania", cursive;
-    font-size: 24px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--blood);
-    border: 3px double var(--blood);
-    transform: rotate(-3deg);
-    box-shadow: 0 0 18px rgba(255, 23, 68, 0.45);
-  }
-
-  .hud {
-    display: flex;
-    align-items: stretch;
-    margin: auto 18px 24px;
-    font-family: "Metal Mania", cursive;
-  }
-  .hud .tag {
-    flex: none;
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    padding: 12px 34px 12px 22px;
-    background: var(--blood);
-    color: #050208;
-    font-size: clamp(20px, 2.6vw, 30px);
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    clip-path: polygon(0 0, 100% 0, calc(100% - 16px) 100%, 0 100%);
-  }
-  .hud .msg {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    align-items: center;
-    margin-left: -8px;
-    padding: 12px 22px 12px 34px;
-    background: var(--panel);
-    border-top: 2px solid var(--blood);
-    border-bottom: 2px solid var(--blood);
-    color: var(--ink);
-    font-size: clamp(16px, 2.2vw, 24px);
-    letter-spacing: 1px;
-    line-height: 1.2;
-    clip-path: polygon(16px 0, 100% 0, 100% 100%, 0 100%);
-  }
-
-  .ping {
-    display: inline-block;
-    will-change: transform;
-    animation: pingpong 12s ease-in-out infinite alternate;
-  }
-  @keyframes pingpong {
-    from { transform: translateX(0); }
-    to { transform: translateX(var(--dist, 0px)); }
-  }
-
-  .tape {
-    --rim: var(--blood);
-    --fill: #030106;
-    position: relative;
-    z-index: 6;
-    margin: 9vh -8vw;
-    transform: rotate(-2.5deg);
-    overflow: hidden;
-    background: var(--rim);
-    color: var(--blood);
-    padding: 30px 0;
-    clip-path: var(--maw);
-  }
-  .tape::before {
-    content: "";
-    position: absolute;
-    inset: 8px 0;
-    background: var(--fill);
-    clip-path: var(--maw);
-    z-index: 0;
-  }
-  .tape .track {
-    position: relative;
-    z-index: 1;
-    display: block;
-    white-space: nowrap;
-    font-family: "Metal Mania", cursive;
-    font-size: clamp(54px, 11vw, 150px);
+    font-weight: 500;
     line-height: 1.15;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
   }
-  .tape .ping { animation-duration: 8s; }
-  .tape.alt {
-    --rim: #050208;
-    --fill: var(--blood);
-    transform: rotate(2.5deg);
-    color: #050208;
+  .hero .sub {
+    max-width: 52ch;
+    margin-top: 16px;
+    font-size: clamp(16px, 1.6vw, 20px);
+    color: var(--on-surface-variant);
+    text-wrap: pretty;
   }
-  .tape.alt .ping { animation-duration: 10s; animation-direction: alternate-reverse; }
 
-  .tape.beerus .track { font-size: clamp(44px, 8vw, 120px); letter-spacing: 0.08em; }
-  .tape.beerus .ping { animation-duration: 9s; }
-  .tape.beerus .track em { font-style: normal; color: var(--ink); text-shadow: 0 0 22px var(--blood), 4px 4px 0 var(--deep); }
-
-  section { padding: 9vh 0 3vh; position: relative; scroll-margin-top: 0; }
-
-  .head { position: relative; padding: 0 18px 8vh; }
-  .head h2 {
-    display: flex;
-    align-items: center;
-    gap: 2vw;
-    font-family: "Metal Mania", cursive;
-    font-weight: 400;
-    font-size: clamp(70px, 16vw, 260px);
-    line-height: 0.95;
-    letter-spacing: 0.02em;
-    color: var(--ink);
-    text-transform: uppercase;
-    text-shadow: 6px 6px 0 var(--deep), 0 0 30px rgba(255, 23, 68, 0.6);
-  }
-  .head h2 svg { width: clamp(60px, 11vw, 170px); flex: none; color: var(--blood); animation: spin 30s linear infinite; }
-
-  .slabs { display: flex; flex-direction: column; }
-  .slab {
-    position: relative;
+  .block {
     display: grid;
-    grid-template-columns: clamp(86px, 18vw, 330px) minmax(0, 1fr) minmax(0, 30%);
-    align-items: center;
-    gap: 3vw;
-    padding: 42px 18px 42px 22px;
-    margin-top: -18px;
-    background: var(--panel);
-    box-shadow: inset 7px 0 0 var(--blood);
-    clip-path: polygon(0 18px, 4% 0, 9% 16px, 15% 2px, 22% 18px, 31% 0, 38% 14px, 47% 3px, 55% 18px, 63% 0, 71% 15px, 80% 2px, 88% 17px, 95% 0, 100% 12px, 100% calc(100% - 14px), 93% 100%, 86% calc(100% - 16px), 76% calc(100% - 2px), 67% calc(100% - 17px), 57% 100%, 48% calc(100% - 13px), 38% calc(100% - 1px), 28% calc(100% - 16px), 19% 100%, 9% calc(100% - 15px), 0 calc(100% - 3px));
-    opacity: 0;
-    transform: translateX(-60px);
-    transition: opacity 0.55s ease, transform 0.55s ease, background 0.15s ease, color 0.15s ease;
+    grid-template-columns: minmax(120px, 22%) 1fr;
+    gap: 0 var(--pad);
+    padding: clamp(40px, 6vw, 96px) var(--pad);
+    border-bottom: 1px solid var(--outline-variant);
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
   }
-  .slab:nth-child(even) { background: #14060e; transform: translateX(60px); }
-  .slab.in { opacity: 1; transform: none; }
-  .slab .num {
-    font-family: "UnifrakturCook", serif;
-    font-weight: 700;
-    font-size: clamp(34px, 8vw, 150px);
-    line-height: 0.9;
-    white-space: nowrap;
-    overflow: hidden;
-    color: transparent;
-    -webkit-text-stroke: 2px var(--blood);
-    transition: -webkit-text-stroke-color 0.15s ease;
+  .block:last-of-type {
+    border-bottom: 0;
+    padding-bottom: calc(clamp(40px, 6vw, 96px) + 72px);
   }
-  .slab .tx { font-family: "Metal Mania", cursive; font-size: clamp(22px, 3.4vw, 48px); line-height: 1.1; letter-spacing: 1px; overflow-wrap: anywhere; text-wrap: balance; }
-  .slab .aside {
-    font-size: 15px;
-    line-height: 1.4;
-    color: var(--dim);
-    border-left: 2px solid var(--blood);
-    padding-left: 14px;
-    overflow-wrap: anywhere;
-    transition: color 0.15s ease, border-color 0.15s ease;
+  .block > h2 {
+    padding-top: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--on-surface-variant);
   }
-  .slab .aside:empty { visibility: hidden; }
 
-  .stars { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
-  .star {
-    position: relative;
-    padding: 5vh 2vw 6vh;
-    text-align: center;
-    background: var(--panel);
-    border-top: 3px solid var(--blood);
-    opacity: 0;
-    transform: translateX(-90px);
-    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  .facts {
+    counter-reset: fact;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(28px, 3.4vw, 48px) clamp(28px, 4vw, 64px);
+    align-items: start;
   }
-  .star + .star { background: #14060e; border-left: 3px solid var(--blood); transform: translateX(90px); }
-  .star.in { opacity: 1; transform: none; }
-  .dial { position: relative; width: min(560px, 92%); margin: 0 auto; }
-  .dial svg { position: relative; display: block; width: 100%; height: auto; overflow: visible; }
-  .s-track { fill: none; stroke: var(--line); stroke-width: 5; stroke-linejoin: round; }
-  .s-fill {
-    fill: none;
-    stroke: var(--blood);
-    stroke-width: 8;
-    stroke-linejoin: round;
-    stroke-linecap: round;
-    transition: stroke-dashoffset 1.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  .facts li {
+    counter-increment: fact;
+    display: grid;
+    grid-template-columns: 2.6ch minmax(0, 1fr);
+    column-gap: 14px;
+    font-size: clamp(17px, 1.5vw, 21px);
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    text-wrap: pretty;
   }
-  .s-ring2 { fill: none; stroke: var(--blood); stroke-width: 1.5; stroke-dasharray: 26 8 3 8; transform-origin: 200px 200px; animation: spin 40s linear infinite reverse; }
-  .dial .center {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .val {
-    font-family: "UnifrakturCook", serif;
-    font-weight: 700;
-    font-size: clamp(54px, 10vw, 140px);
-    line-height: 1;
-    color: var(--ink);
+  .facts li::before {
+    content: counter(fact, decimal-leading-zero);
+    padding-top: 0.42em;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--outline);
     font-variant-numeric: tabular-nums;
-    text-shadow: 4px 4px 0 var(--hex), 0 0 14px #0b0510, 0 0 28px #0b0510, 0 0 40px #0b0510;
   }
-  .val.dim { font-size: 18px; color: var(--dim); text-shadow: none; font-family: "IBM Plex Mono", monospace; }
-  .unit {
-    font-family: "Metal Mania", cursive;
-    font-size: clamp(16px, 2.2vw, 28px);
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--blood);
-    margin-top: 2px;
-    text-shadow: 0 0 10px #0b0510, 0 0 20px #0b0510;
+  .facts li.lg {
+    grid-column: span 2;
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
   }
-  .what {
-    margin-top: 2px;
-    font-size: clamp(11px, 1.2vw, 14px);
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--dim);
-    text-shadow: 0 0 8px #0b0510, 0 0 16px #0b0510;
-  }
-  .caption { margin-top: 18px; font-weight: 700; opacity: 0.9; }
-  .caption::before { content: "\2020  "; color: var(--blood); }
+  .facts li.lg::before { padding-top: 0.9em; }
 
-  footer {
-    position: relative;
-    z-index: 6;
-    margin-top: 10vh;
-    padding: 12vh 18px 10vh;
-    background: var(--blood);
-    color: #050208;
-    clip-path: polygon(0 6vw, 8% 0, 15% 4vw, 27% 1vw, 40% 5vw, 52% 0, 66% 4vw, 79% 1vw, 90% 5vw, 100% 2vw, 100% 100%, 0 100%);
-  }
-  .rights {
-    font-family: "Metal Mania", cursive;
-    font-size: clamp(44px, 11vw, 190px);
-    line-height: 0.98;
-    text-transform: uppercase;
-    overflow-wrap: anywhere;
-  }
-  .rights .bang { color: var(--bg); }
-
-  .warn {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: rgba(2, 0, 5, 0.92);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.15s ease, visibility 0s linear 0.15s;
-  }
-  .warn.show { opacity: 1; visibility: visible; pointer-events: auto; transition-delay: 0s; }
-  .warn .box {
-    position: relative;
-    width: min(540px, 100%);
-    text-align: center;
-    background: var(--blood);
-    clip-path: var(--horned);
-    transform: scale(0.96);
-    transition: transform 0.15s ease;
-  }
-  .warn .box::before {
-    content: "";
-    position: absolute;
-    inset: 5px;
-    background: #0b0510;
-    clip-path: var(--horned);
-    z-index: 0;
-  }
-  .warn .box > * { position: relative; z-index: 1; }
-  .warn.show .box { transform: none; }
-  .warn .bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    padding: 58px 16px 12px;
-    background: var(--blood);
-    color: #050208;
-  }
-  .warn .ic { width: 34px; flex: none; }
-  .warn h3 {
-    font-family: "Metal Mania", cursive;
-    font-weight: 400;
-    font-size: 40px;
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    line-height: 1;
-  }
-  .warn .body { padding: 28px 30px 44px; }
-  .warn p { font-size: 18px; line-height: 1.45; min-height: 4.4em; font-weight: 700; color: var(--ink); text-wrap: balance; }
-  .warn small {
+  .facts .note {
     display: block;
-    margin-top: 14px;
-    padding-top: 12px;
-    border-top: 1px dashed var(--deep);
-    font-size: 13px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--dim);
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0;
+    color: var(--on-surface-variant);
   }
-  .warn button {
-    margin-top: 22px;
-    padding: 12px 34px;
-    font-family: "Metal Mania", cursive;
-    font-size: 20px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #050208;
-    background: var(--blood);
-    border: 0;
-    cursor: pointer;
-    clip-path: polygon(0 30%, 8% 0, 20% 25%, 35% 0, 50% 20%, 65% 0, 80% 25%, 92% 0, 100% 30%, 96% 100%, 80% 78%, 62% 100%, 45% 80%, 28% 100%, 12% 80%, 4% 100%);
-    transition: background 0.12s ease;
+  .facts .note::before,
+  .facts .note::after {
+    font-size: 1.7em;
+    font-weight: 300;
+    line-height: 0;
+    vertical-align: -0.12em;
+    color: var(--outline);
   }
-  .warn button:focus-visible { background: var(--ink); outline: 0; }
+  .facts .note::before { content: "{"; margin-right: 6px; }
+  .facts .note::after { content: "}"; margin-left: 6px; }
 
-  @media (hover: hover) {
-    .side a:hover { background: var(--hex); color: #fff; }
-    .side button.light:hover { background: var(--ink); color: #050208; }
-    .name span:hover { transform: translateY(-14px) rotate(-6deg) scale(1.1); color: var(--blood); }
-    .slab:hover { background: var(--blood); color: #050208; box-shadow: inset 7px 0 0 #050208; }
-    .slab:hover .num { -webkit-text-stroke-color: #050208; }
-    .slab:hover .aside { color: #050208; border-color: #050208; }
-    .warn button:hover { background: var(--ink); }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; }
+  .stat + .stat {
+    padding-left: clamp(20px, 3vw, 48px);
+    border-left: 1px solid var(--outline-variant);
   }
-
-  @media (max-height: 560px) {
-    .side .mark { height: 52px; }
-    .side .mark svg { width: 28px; }
-    .side a, .side button { font-size: 18px; letter-spacing: 2px; padding: 14px 16px 14px 0; }
+  .stat .value {
+    font-size: clamp(56px, 11vw, 176px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    font-variant-numeric: tabular-nums;
   }
-
-  @media (max-width: 860px) {
-    .slab { grid-template-columns: clamp(70px, 18vw, 130px) minmax(0, 1fr); }
-    .slab .num { font-size: clamp(28px, 6.5vw, 60px); }
-    .slab .aside { grid-column: 2; }
-    .stars { grid-template-columns: 1fr; }
-    .star + .star { border-left: 0; }
+  .stat .unit {
+    margin-left: 8px;
+    font-size: clamp(14px, 1.6vw, 20px);
+    color: var(--on-surface-variant);
+  }
+  .stat .label {
+    display: block;
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--on-surface-variant);
   }
 
   @media (max-width: 760px) {
-    body { padding-left: 0; padding-bottom: 0; cursor: auto; }
-    .veil { background: radial-gradient(ellipse at center, transparent 44%, rgba(0, 0, 0, 0.75) 100%); }
-    .side {
-      top: auto;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      height: 66px;
-      flex-direction: row;
-      clip-path: var(--fang-bottom);
-    }
-    .side::before {
-      inset: 4px 0 0 0;
-      clip-path: var(--fang-bottom);
-    }
-    .side .mark { display: none; }
-    .side a, .side button {
-      flex: 1;
-      min-width: 0;
-      writing-mode: horizontal-tb;
-      transform: none;
-      padding: 14px 0 0 0;
-      font-size: 18px;
-      letter-spacing: 2px;
-      border-bottom: 0;
-      border-right: 1px solid var(--line);
-    }
-    .side button.light { margin-top: 0; border-top: 0; border-right: 0; }
-    .name { font-size: 17.5vw; }
-    .tape { margin: 7vh -12vw; }
-    .hero { min-height: 0; justify-content: flex-start; padding-top: 3vh; }
-    .lede { padding-top: 14px; }
-    .seal { margin: 8px 12px 0; gap: 10px; padding: 8px 12px 8px 8px; }
-    .vessel { width: 70px; }
-    .seal .num { font-size: 44px; min-width: 2.6ch; }
-    .s-lab { font-size: 16px; letter-spacing: 2px; }
-    #seal-status { font-size: 10px; letter-spacing: 1px; }
-    .badges { margin: 20px 12px 16px; }
-    .hud { margin: 0 12px 8px; }
-    .hud .tag { padding: 10px 26px 10px 14px; font-size: 18px; letter-spacing: 2px; }
-    .hud .msg { padding: 10px 14px 10px 26px; font-size: 14px; letter-spacing: 0; }
-    .head { padding: 0 12px 6vh; }
-    .head h2 { font-size: 14vw; gap: 3vw; }
-    .head h2 svg { width: 13vw; }
-    .slab { padding: 42px 14px 42px 16px; }
-    .warn { padding: 12px; }
-    .warn h3 { font-size: 30px; letter-spacing: 3px; }
-    .warn .ic { width: 26px; }
-    .warn .bar { gap: 8px; padding: 54px 10px 12px; }
-    .warn .body { padding: 22px 18px 40px; }
-    .warn p { font-size: 16px; }
-    footer { padding: 12vh 14px calc(10vh + 70px); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .ping, .lede .cur, .veil::after, .sigil .spin-a, .sigil .spin-b, .sigil .spin-c, .sigil .tri, .sigil .pulse, .head h2 svg, .s-ring2, .side .mark svg, .v-ring, .v-wave, .seal .num.slam { animation: none; }
-    .warn, .warn .box { transition: none; }
-    .slab, .star { opacity: 1; transform: none; transition: none; }
+    .block { grid-template-columns: 1fr; }
+    .block > h2 { padding-bottom: 20px; }
+    .facts { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .facts li.lg { grid-column: auto; font-size: clamp(22px, 6vw, 28px); }
+    .stat .value { font-size: clamp(40px, 13vw, 80px); }
+    .stat + .stat { padding-left: 16px; }
   }
 </style>
 </head>
 <body>
 
-<div class="world" id="world" aria-hidden="true">
-  <div class="sigil-wrap" id="sigil-wrap">
-    <svg class="sigil" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
-      <defs>
-        <path id="ringpath" d="M200 200 m-182 0 a182 182 0 1 1 364 0 a182 182 0 1 1 -364 0"/>
-      </defs>
-      <g class="spin-a">
-        <circle cx="200" cy="200" r="198"/>
-        <circle cx="200" cy="200" r="168"/>
-        <text><textPath href="#ringpath" textLength="1138" lengthAdjust="spacing">ᚠᚢᚦᚨᚱᚲ SAFALSKI ᚷᚹᚺᚾᛁᛃ KNEEL ᛇᛈᛉᛊᛏᛒ NO GOD ᛖᛗᛚᛜᛞᛟ BLOOD ᚠᚢᚦᚨᚱᚲ VOID ᚷᚹᚺᚾᛁᛃ END ᛇᛈᛉᛊ</textPath></text>
-      </g>
-      <g class="spin-c">
-        <g class="pulse">
-          <circle cx="200" cy="200" r="160"/>
-          <path d="M200 360 L106 70.6 L352.2 249.4 L47.8 249.4 L294 70.6 Z" stroke-width="2.4"/>
-          <circle cx="200" cy="360" r="7"/>
-          <circle cx="47.8" cy="249.4" r="7"/>
-          <circle cx="106" cy="70.6" r="7"/>
-          <circle cx="294" cy="70.6" r="7"/>
-          <circle cx="352.2" cy="249.4" r="7"/>
-        </g>
-      </g>
-      <g class="spin-b">
-        <circle cx="200" cy="200" r="110" stroke-dasharray="18 6 3 6"/>
-        <circle cx="200" cy="200" r="78" stroke-dasharray="1 5"/>
-        <path d="M200 120 L269 240 L131 240 Z"/>
-        <path d="M200 280 L131 160 L269 160 Z"/>
-      </g>
-      <g class="tri">
-        <path d="M200 160 L234.6 220 L165.4 220 Z" stroke-width="2.4"/>
-      </g>
-    </svg>
-  </div>
-  <div class="flash" id="flash"></div>
-</div>
-<div class="veil" aria-hidden="true"></div>
+<button class="toggle" id="theme-btn" type="button">Dark</button>
 
-<nav class="side" aria-label="Main">
-  <div class="mark" aria-hidden="true">
-    <svg viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="18" stroke-linejoin="round"><circle cx="200" cy="200" r="185"/><path d="M200 360 L106 70.6 L352.2 249.4 L47.8 249.4 L294 70.6 Z"/></svg>
-  </div>
-  <a href="#traits" data-go="traits">Facts</a>
-  <a href="#stats" data-go="stats">Numbers</a>
-  <button class="light" id="light-btn" type="button" aria-label="Light mode">Light</button>
-</nav>
-
-<div class="warn" id="warn" role="dialog" aria-modal="true" aria-labelledby="warn-title" aria-describedby="warn-text" aria-hidden="true">
-  <div class="box">
-    <div class="bar">
-      <svg class="ic" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="22" stroke-linejoin="round" aria-hidden="true"><circle cx="200" cy="200" r="185"/><path d="M200 360 L106 70.6 L352.2 249.4 L47.8 249.4 L294 70.6 Z"/></svg>
-      <h3 id="warn-title">Warning</h3>
-      <svg class="ic" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="22" stroke-linejoin="round" aria-hidden="true"><circle cx="200" cy="200" r="185"/><path d="M200 360 L106 70.6 L352.2 249.4 L47.8 249.4 L294 70.6 Z"/></svg>
-    </div>
-    <div class="body">
-      <p id="warn-text"></p>
-      <small id="warn-small"></small>
-      <button id="warn-close" type="button">Forgive me, my lord</button>
-    </div>
-  </div>
-</div>
-
-<main id="top">
-
-  <section class="hero" id="hero">
-    <h1 class="name" id="name" aria-label="Safalski"></h1>
-    <div class="lede">
-      <span class="big"><span id="lede-big"></span><span class="cur" aria-hidden="true"></span></span>
-      <span class="sub" id="lede-sub"></span>
-    </div>
-    <div class="seal">
-      <div class="vessel" aria-hidden="true">
-        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <clipPath id="pent-clip"><path d="M200 360 L106 70.6 L352.2 249.4 L47.8 249.4 L294 70.6 Z"/></clipPath>
-          </defs>
-          <circle class="v-ring" cx="200" cy="200" r="190"/>
-          <path class="v-back" d="M200 360 L106 70.6 L352.2 249.4 L47.8 249.4 L294 70.6 Z"/>
-          <g clip-path="url(#pent-clip)">
-            <g class="v-lvl" id="v-lvl">
-              <g class="v-wave b"><path d="M-200 -6 Q-150 -22 -100 -6 T0 -6 T100 -6 T200 -6 T300 -6 T400 -6 T500 -6 T600 -6 V460 H-200 Z" fill="#a1062a"/></g>
-              <g class="v-wave"><path d="M-200 0 Q-150 -16 -100 0 T0 0 T100 0 T200 0 T300 0 T400 0 T500 0 T600 0 V460 H-200 Z" fill="#ff1744"/></g>
-            </g>
-          </g>
-          <path class="v-edge" d="M200 360 L106 70.6 L352.2 249.4 L47.8 249.4 L294 70.6 Z"/>
-        </svg>
-      </div>
-      <div class="num" id="seal-num">0%</div>
-      <div class="s-info">
-        <span class="s-lab">Awakening</span>
-        <span id="seal-status">The seal holds</span>
-      </div>
-    </div>
-    <div class="badges">
-      <div class="badge">C dev</div>
-    </div>
-    <div class="hud">
-      <div class="tag">Status</div>
-      <div class="msg">Sealed in a land where netas lie better than demons. Amateurs.</div>
-    </div>
+<main>
+  <section class="hero" id="top">
+    <h1>safalski</h1>
+    <p class="tagline">Simple good human being and water enthusiast.</p>
+    <p class="sub">C developer. Low-level code, anime and manga, and a pen that never stops spinning.</p>
   </section>
 
-  <div class="tape beerus" aria-hidden="true"><div class="track"><span class="ping">Don't make me <em>75%</em></span></div></div>
-
-  <section id="traits">
-    <div class="head">
-      <h2>
-        <svg viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="14" stroke-linejoin="round" aria-hidden="true"><circle cx="200" cy="200" r="190"/><path d="M200 360 L106 70.6 L352.2 249.4 L47.8 249.4 L294 70.6 Z"/></svg>
-        Facts
-      </h2>
-    </div>
-    <div class="slabs" id="slabs"></div>
+  <section class="block" id="facts">
+    <h2>Facts</h2>
+    <ul class="facts">
+      <li class="lg"><div>Water enthusiast.</div></li>
+      <li class="lg"><div>C developer. No garbage collector, memory is managed by hand.<span class="note">a segfault is just a lesson</span></div></li>
+      <li><div>Used to write Rust.<span class="note">still respects the borrow checker</span></div></li>
+      <li><div>Prefers snake_case over PascalCase.</div></li>
+      <li><div>Reads anime and manga.</div></li>
+      <li><div>Knows every base Naruto hand sign.</div></li>
+      <li class="lg"><div>Solves the Rubik's cube in under 2 minutes.<span class="note">under 1 on a magnetic cube</span></div></li>
+      <li><div>Spins a pen. Thumbaround is the favorite.</div></li>
+      <li><div>Listens to whatever sounds good.<span class="note">no loyalty to genre</span></div></li>
+      <li><div>Debugs by reading the code until it makes sense.</div></li>
+      <li><div>Has strong opinions about powerscaling.<span class="note">Goku solos most verses</span></div></li>
+    </ul>
   </section>
 
-  <div class="tape alt" aria-hidden="true"><div class="track"><span class="ping">OBLIVION</span></div></div>
-
-  <section id="stats">
-    <div class="head">
-      <h2>
-        <svg viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="14" stroke-linejoin="round" aria-hidden="true"><circle cx="200" cy="200" r="190"/><path d="M200 360 L106 70.6 L352.2 249.4 L47.8 249.4 L294 70.6 Z"/></svg>
-        Numbers
-      </h2>
-    </div>
-    <div class="stars">
-      <div class="star">
-        <div class="dial">
-          <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle class="s-ring2" cx="200" cy="200" r="178"/>
-            <path class="s-track" d="M200 360 L106 70.6 L352.2 249.4 L47.8 249.4 L294 70.6 Z"/>
-            <path class="s-fill" id="wpm-star" d="M200 360 L106 70.6 L352.2 249.4 L47.8 249.4 L294 70.6 Z"/>
-          </svg>
-          <div class="center">
-            <div class="val dim" id="wpm-val">loading</div>
-            <div class="unit">wpm</div>
-            <div class="what">typing speed</div>
-          </div>
-        </div>
-        <div class="caption">apparently fingers very fast..</div>
+  <section class="block" id="numbers">
+    <h2>Numbers</h2>
+    <div class="stats">
+      <div class="stat">
+        <span class="value" id="wpm-val">—</span><span class="unit">wpm</span>
+        <span class="label">typing speed</span>
       </div>
-      <div class="star" id="cube-star-wrap">
-        <div class="dial">
-          <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle class="s-ring2" cx="200" cy="200" r="178"/>
-            <path class="s-track" d="M200 360 L106 70.6 L352.2 249.4 L47.8 249.4 L294 70.6 Z"/>
-            <path class="s-fill" id="cube-star" d="M200 360 L106 70.6 L352.2 249.4 L47.8 249.4 L294 70.6 Z"/>
-          </svg>
-          <div class="center">
-            <div class="val" id="cube-val">0</div>
-            <div class="unit">sec</div>
-            <div class="what">avg cube solve</div>
-          </div>
-        </div>
-        <div class="caption">not coping</div>
+      <div class="stat">
+        <span class="value">120</span><span class="unit">sec</span>
+        <span class="label">average cube solve</span>
       </div>
     </div>
   </section>
-
-  <footer>
-    <div class="rights">No copyright.<br>All rights <span class="bang">!</span>reserved.</div>
-  </footer>
-
 </main>
 
 <script>
-  const traits = [
-    { text: "Worships water. It drowns liars, and I intend to be patient.", aside: "your lungs are already negotiating" },
-    { text: "Was a rustacean. Escaped the cult. The borrow checker still whispers my name.", aside: "it knows where I sleep" },
-    { text: "C developer. No garbage collector. I bury my own bodies.", aside: "a segfault is just the dead resurfacing" },
-    { text: "Mostly a hypocrite. Every tyrant breaks his own commandments.", aside: "the rest of me is lying too" },
-    { text: "Devours anime && manga. Fictional souls are the only ones that taste clean.", aside: "that shit's just glorified atm, and I collect the withdrawals" },
-    { text: "Judges your very existence. The verdict was sealed before your first breath.", aside: "appeals are fed to the void" },
-    { text: "Solves the rubik's cube in under 2 minutes. Scrambles are a polite warning.", aside: "under 1 if magnetic. Your fate takes less" },
-    { text: "Spins a pen. Thumbaround is the favorite. Idle hands do the devil's work.", aside: "it is a ritual, not a hobby" },
-    { text: "Knows every base Naruto hand sign. Forbidden jutsu is loading.", aside: "the cast is ready, a sacrifice is not" },
-    { text: "Listens to whatever sounds good. Silence is the only enemy.", aside: "no loyalty to genre, only to the sound that kills quiet" },
-    { text: "Despises PascalCase. The sentence is death.", aside: "snake_case is the only holy law" },
-    { text: "Confidently wrong about powerscaling. Disagree and be unmade.", aside: "same as everyone, ur bum if you disagree" },
-    { text: "Debugs by staring at the code until it confesses.", aside: "it always confesses. It always does" },
-    { text: "Goku solos your favorite verse. Kneel.", aside: "the verse is already ash" }
-  ];
+  (function () {
+    var btn = document.getElementById('theme-btn');
+    window.__theme.sync();
+    window.__theme.follow();
+    btn.addEventListener('click', window.__theme.toggle);
 
-  function toRoman(n) {
-    const map = [[10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']];
-    let out = '';
-    map.forEach(([v, s]) => { while (n >= v) { out += s; n -= v; } });
-    return out;
-  }
+    var out = document.getElementById('wpm-val');
+    var KEY = 'wpm-cache';
+    var TTL = 3600000;
 
-  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let heroVisible = true;
+    function show(v) { out.textContent = v; }
 
-  const slabsEl = document.getElementById('slabs');
-  slabsEl.innerHTML = traits.map((t, i) => `
-    <div class="slab">
-      <span class="num" aria-label="${i + 1}">${toRoman(i + 1)}</span>
-      <span class="tx">${t.text}</span>
-      <span class="aside">${t.aside || ''}</span>
-    </div>
-  `).join('');
-
-  const slabObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        slabObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.slab').forEach(s => slabObserver.observe(s));
-
-  const starObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        starObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.star').forEach(s => starObserver.observe(s));
-
-  const animObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      entry.target.classList.toggle('is-off', !entry.isIntersecting);
-      if (entry.target.id === 'hero') heroVisible = entry.isIntersecting;
-    });
-  }, { rootMargin: '80px 0px' });
-  document.querySelectorAll('.hero, .tape, .head, .star').forEach(el => animObserver.observe(el));
-
-  const nameEl = document.getElementById('name');
-  'Safalski'.split('').forEach(ch => {
-    const s = document.createElement('span');
-    s.setAttribute('aria-hidden', 'true');
-    s.textContent = ch;
-    nameEl.appendChild(s);
-  });
-
-  const pings = Array.from(document.querySelectorAll('.ping'));
-  function measurePings() {
-    pings.forEach(p => {
-      const host = p.parentElement;
-      p.style.setProperty('--dist', Math.round(host.clientWidth - p.offsetWidth) + 'px');
-    });
-  }
-  let measureTimer = 0;
-  window.addEventListener('resize', () => {
-    clearTimeout(measureTimer);
-    measureTimer = setTimeout(measurePings, 120);
-  });
-  measurePings();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measurePings);
-
-  const ledeBig = document.getElementById('lede-big');
-  const ledeSub = document.getElementById('lede-sub');
-  const bigText = "Simple evil inhuman being.";
-  const subs = [
-    "Sealed alter ego: still asleep. The world ends the day I wake.",
-    "My sealed right arm trembles. Do not provoke the Dark Flame.",
-    "Forget my name. Remember what it does to empires.",
-    "Every oath is signed in blood. Mine is still wet.",
-    "The ancient pact is nearly complete. Mortals, make peace with your keyboards."
-  ];
-  let si = 0;
-  ledeSub.textContent = subs[0];
-
-  if (still) {
-    ledeBig.textContent = bigText;
-  } else {
-    (function typeBig(i) {
-      ledeBig.textContent = bigText.slice(0, i);
-      if (i < bigText.length) setTimeout(() => typeBig(i + 1), 55);
-    })(0);
-  }
-
-  setInterval(() => {
-    if (document.hidden || !heroVisible) return;
-    ledeSub.classList.add('off');
-    setTimeout(() => {
-      si = (si + 1) % subs.length;
-      ledeSub.textContent = subs[si];
-      ledeSub.classList.remove('off');
-    }, 380);
-  }, 5000);
-
-  const flashEl = document.getElementById('flash');
-
-  const sealNum = document.getElementById('seal-num');
-  const sealStatus = document.getElementById('seal-status');
-  const sealLvl = document.getElementById('v-lvl');
-  const holdLines = ["The seal holds", "Not yet", "Still sealed", "Back to sleep", "Denied"];
-  const surgeLines = ["Something tears", "It claws at the seal", "It hears you", "It is rising"];
-  let sealBusy = false;
-
-  function setSeal(p) {
-    sealNum.textContent = p + '%';
-    sealLvl.style.transform = 'translateY(' + (372 - p * 3) + 'px)';
-  }
-
-  function setSealText(t) {
-    sealStatus.classList.add('off');
-    setTimeout(() => {
-      sealStatus.textContent = t;
-      sealStatus.classList.remove('off');
-    }, 180);
-  }
-
-  function surge() {
-    if (sealBusy) return;
-    sealBusy = true;
-    const peak = 4 + Math.floor(Math.random() * 10);
-    let p = 0;
-    setSealText(surgeLines[Math.floor(Math.random() * surgeLines.length)]);
-    const climb = setInterval(() => {
-      p++;
-      setSeal(p);
-      if (p >= peak) {
-        clearInterval(climb);
-        setTimeout(() => {
-          sealLvl.classList.add('snap');
-          setSeal(0);
-          sealNum.classList.remove('slam');
-          void sealNum.offsetWidth;
-          sealNum.classList.add('slam');
-          setSealText(holdLines[Math.floor(Math.random() * holdLines.length)]);
-          setTimeout(() => {
-            sealLvl.classList.remove('snap');
-            sealBusy = false;
-          }, 200);
-        }, 650);
-      }
-    }, 110);
-  }
-
-  if (!still) {
-    (function loopSurge() {
-      setTimeout(() => {
-        if (!document.hidden && heroVisible) surge();
-        loopSurge();
-      }, 3600 + Math.random() * 3200);
-    })();
-    setTimeout(surge, 1600);
-  }
-
-  const warnEl = document.getElementById('warn');
-  const warnText = document.getElementById('warn-text');
-  const warnSmall = document.getElementById('warn-small');
-  const warnClose = document.getElementById('warn-close');
-  const lightBtn = document.getElementById('light-btn');
-  const warnLines = [
-    ["How dare you reach for the light in my presence, mortal.", "Light not found. Please try again in the next life."],
-    ["Light? There is no light where I dwell. Even your phone flashlight fears me.", "Error 666: Brightness denied."],
-    ["You seek the light? Cute. The sun is already packing its bags.", "Further attempts will be recorded in the Book of Fools."],
-    ["Light mode was sealed away by the ancient pact. Your request has been fed to the void.", "The void thanks you for your offering."],
-    ["Foolish mortal. Brightness is a privilege, and you have none.", "Contact your local deity for a refund."]
-  ];
-  let wi = 0;
-
-  function showWarn() {
-    const l = warnLines[wi % warnLines.length];
-    wi++;
-    warnText.textContent = l[0];
-    warnSmall.textContent = l[1];
-    warnEl.classList.add('show');
-    warnEl.setAttribute('aria-hidden', 'false');
-    warnClose.focus({ preventScroll: true });
-    if (!still) {
-      flashEl.style.opacity = '0.3';
-      setTimeout(() => { flashEl.style.opacity = '0'; }, 90);
+    var cached = null;
+    try { cached = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+    if (cached && typeof cached.v === 'number') {
+      show(cached.v);
+      if (Date.now() - cached.t < TTL) return;
     }
-  }
 
-  function hideWarn() {
-    if (!warnEl.classList.contains('show')) return;
-    warnEl.classList.remove('show');
-    warnEl.setAttribute('aria-hidden', 'true');
-    lightBtn.focus({ preventScroll: true });
-  }
+    var ctrl = new AbortController();
+    var timer = setTimeout(function () { ctrl.abort(); }, 6000);
 
-  lightBtn.addEventListener('click', showWarn);
-  warnClose.addEventListener('click', hideWarn);
-  warnEl.addEventListener('click', e => { if (e.target === warnEl) hideWarn(); });
-  window.addEventListener('keydown', e => {
-    if (!warnEl.classList.contains('show')) return;
-    if (e.key === 'Escape') hideWarn();
-    if (e.key === 'Tab') { e.preventDefault(); warnClose.focus(); }
-  });
-
-  const sigilWrap = document.getElementById('sigil-wrap');
-  let mx = 0, my = 0, tx = 0, ty = 0;
-  let animating = false;
-  let scrollQueued = false;
-
-  function applyParallax() {
-    sigilWrap.style.transform = `translate3d(${(mx * -34).toFixed(2)}px, ${(window.scrollY * -0.08 + my * -24).toFixed(2)}px, 0) rotate(${(mx * 6).toFixed(3)}deg)`;
-  }
-
-  function renderParallax() {
-    mx += (tx - mx) * 0.08;
-    my += (ty - my) * 0.08;
-    applyParallax();
-    if (Math.abs(tx - mx) > 0.0005 || Math.abs(ty - my) > 0.0005) {
-      requestAnimationFrame(renderParallax);
-    } else {
-      animating = false;
+    function load() {
+      fetch('https://api.monkeytype.com/users/safalski/profile', { signal: ctrl.signal })
+        .then(function (res) {
+          if (!res.ok) throw new Error('bad response');
+          return res.json();
+        })
+        .then(function (data) {
+          var best = data && data.data && data.data.personalBests && data.data.personalBests.time && data.data.personalBests.time['60'];
+          if (!best || !best[0]) throw new Error('no data');
+          var wpm = Math.round(best[0].wpm);
+          show(wpm);
+          try { localStorage.setItem(KEY, JSON.stringify({ v: wpm, t: Date.now() })); } catch (e) {}
+        })
+        .catch(function () {
+          if (!cached) show('—');
+        })
+        .finally(function () { clearTimeout(timer); });
     }
-  }
 
-  function kickParallax() {
-    if (still || animating) return;
-    animating = true;
-    requestAnimationFrame(renderParallax);
-  }
-
-  window.addEventListener('mousemove', e => {
-    tx = e.clientX / window.innerWidth - 0.5;
-    ty = e.clientY / window.innerHeight - 0.5;
-    kickParallax();
-  }, { passive: true });
-  window.addEventListener('touchmove', e => {
-    const t = e.touches[0];
-    if (!t) return;
-    tx = t.clientX / window.innerWidth - 0.5;
-    ty = t.clientY / window.innerHeight - 0.5;
-    kickParallax();
-  }, { passive: true });
-
-  const navItems = Array.from(document.querySelectorAll('.side a[data-go]')).map(a => ({
-    a,
-    sec: document.getElementById(a.dataset.go)
-  }));
-
-  navItems.forEach(({ a, sec }) => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const top = sec.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top, behavior: still ? 'auto' : 'smooth' });
-    });
-  });
-
-  function markActive() {
-    const mid = window.innerHeight * 0.4;
-    let current = null;
-    navItems.forEach(({ a, sec }) => {
-      const r = sec.getBoundingClientRect();
-      if (r.top <= mid && r.bottom > mid) current = a;
-    });
-    navItems.forEach(({ a }) => {
-      const on = a === current;
-      a.classList.toggle('active', on);
-      if (on) a.setAttribute('aria-current', 'true');
-      else a.removeAttribute('aria-current');
-    });
-  }
-
-  function onScroll() {
-    if (scrollQueued) return;
-    scrollQueued = true;
-    requestAnimationFrame(() => {
-      scrollQueued = false;
-      markActive();
-      if (!still && !animating) applyParallax();
-    });
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
-  markActive();
-  applyParallax();
-
-  const starPaths = {};
-  ['wpm-star', 'cube-star'].forEach(id => {
-    const p = document.getElementById(id);
-    const len = p.getTotalLength();
-    p.style.strokeDasharray = len;
-    p.style.strokeDashoffset = len;
-    starPaths[id] = { p, len };
-  });
-
-  function setStar(id, ratio) {
-    const s = starPaths[id];
-    s.p.style.strokeDashoffset = String(s.len * (1 - Math.max(0, Math.min(ratio, 1))));
-  }
-
-  function animateCount(el, target) {
-    const duration = still ? 0 : 1400;
-    const startTime = performance.now();
-    function tick(now) {
-      const p = duration ? Math.min((now - startTime) / duration, 1) : 1;
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(eased * target);
-      if (p < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  }
-
-  const wpmVal = document.getElementById('wpm-val');
-  fetch('https://api.monkeytype.com/users/safalski/profile')
-    .then(res => {
-      if (!res.ok) throw new Error('bad response');
-      return res.json();
-    })
-    .then(data => {
-      const best = data && data.data && data.data.personalBests && data.data.personalBests.time && data.data.personalBests.time["60"];
-      if (!best || !best[0]) throw new Error('no data');
-      const wpm = Math.round(best[0].wpm);
-      wpmVal.classList.remove('dim');
-      animateCount(wpmVal, wpm);
-      setStar('wpm-star', wpm / 200);
-    })
-    .catch(() => {
-      wpmVal.textContent = '—';
-    });
-
-  const cubeVal = document.getElementById('cube-val');
-  const cubeObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCount(cubeVal, 120);
-        setStar('cube-star', 120 / 180);
-        cubeObserver.disconnect();
-      }
-    });
-  }, { threshold: 0.4 });
-  cubeObserver.observe(document.getElementById('cube-star-wrap'));
+    if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 1500 });
+    else setTimeout(load, 200);
+  })();
 </script>
 
 </body>
